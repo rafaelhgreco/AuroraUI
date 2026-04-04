@@ -35,7 +35,7 @@ export default function Dropdown({
 					return (
 						<Styled.Item
 							key={item.id}
-							isHighlight={shouldHighlight}
+							$isHighlight={shouldHighlight}
 							onClick={() => {
 								item.onClick?.();
 								controller.close();

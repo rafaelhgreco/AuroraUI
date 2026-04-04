@@ -7,7 +7,9 @@ const Wrapper = styled.div`
     align-items: center;
 `;
 
-const Menu = styled.ul<{ $isVisible: boolean }>`
+const Menu = styled("ul", {
+	shouldForwardProp: (prop) => prop !== "$isVisible" && prop !== "isVisible",
+})<{ $isVisible: boolean }>`
     position: absolute;
     top: 100%;
     left: 0;
@@ -26,7 +28,10 @@ const Menu = styled.ul<{ $isVisible: boolean }>`
     transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
 `;
 
-const Item = styled.li<{ isHighlight?: boolean }>`
+const Item = styled("li", {
+	shouldForwardProp: (prop) =>
+		prop !== "$isHighlight" && prop !== "isHighlight",
+})<{ $isHighlight?: boolean }>`
     padding: 12px 20px;
     font-family: sans-serif;
     font-size: 14px;
@@ -34,8 +39,8 @@ const Item = styled.li<{ isHighlight?: boolean }>`
     cursor: pointer;
     transition: background-color 0.2s;
 
-    ${({ isHighlight }) =>
-			isHighlight &&
+    ${({ $isHighlight }) =>
+			$isHighlight &&
 			`
             border-bottom: 1px solid #e0e0e0;
             margin-bottom: 4px;
@@ -53,7 +58,8 @@ const Item = styled.li<{ isHighlight?: boolean }>`
 `;
 
 const Chevron = styled(HiChevronDown, {
-	shouldForwardProp: (prop) => prop !== "$isVisible",
+	shouldForwardProp: (prop) =>
+		prop !== "$isVisible" && prop !== "isVisible",
 })<{ $isVisible?: boolean }>`
     transform: ${({ $isVisible }) =>
 			$isVisible ? "rotate(180deg)" : "rotate(0deg)"};
