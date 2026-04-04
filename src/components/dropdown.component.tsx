@@ -1,4 +1,5 @@
 import type React from "react";
+import { HiChevronDown } from "react-icons/hi2";
 import { useDropdown } from "../hooks/use-dropdown";
 import type { DropdownItem } from "../types/dropdown-item.types";
 import { Styled } from "./dropdown.component.styles";
@@ -24,7 +25,9 @@ export default function Dropdown({
 		>
 			<Styled.Container onClick={controller.toggleOpen}>
 				{trigger}
-				<Styled.Chevron $isVisible={state.isVisible} />
+				<Styled.ChevronWrapper $isVisible={state.isVisible}>
+					<HiChevronDown />
+				</Styled.ChevronWrapper>
 			</Styled.Container>
 
 			<Styled.Menu $isVisible={state.isVisible}>

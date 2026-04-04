@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { HiChevronDown } from "react-icons/hi2";
 
 const Wrapper = styled.div`
     position: relative;
@@ -56,9 +55,11 @@ const Item = styled("li", {
     }
 `;
 
-const Chevron = styled(HiChevronDown, {
+/** Wraps the icon so transient props never reach react-icons' `<svg>`. */
+const ChevronWrapper = styled("span", {
 	shouldForwardProp: (prop) => prop !== "$isVisible",
 })<{ $isVisible?: boolean }>`
+    display: inline-flex;
     transform: ${({ $isVisible }) =>
 			$isVisible ? "rotate(180deg)" : "rotate(0deg)"};
     transition: transform 0.2s ease;
@@ -76,6 +77,6 @@ export const Styled = {
 	Wrapper,
 	Menu,
 	Item,
-	Chevron,
+	ChevronWrapper,
 	Container,
 };
