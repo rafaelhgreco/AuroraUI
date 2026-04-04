@@ -6,9 +6,8 @@ const Wrapper = styled.div`
     align-items: center;
 `;
 
-const Menu = styled("ul", {
-	shouldForwardProp: (prop) => prop !== "$isVisible",
-})<{ $isVisible: boolean }>`
+/** Open state via data-dropdown-open only (valid DOM; avoids transient props on Next). */
+const Menu = styled.ul`
     position: absolute;
     top: 100%;
     left: 0;
@@ -21,15 +20,22 @@ const Menu = styled("ul", {
     list-style: none;
     z-index: 1000;
 
-    opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-    visibility: ${({ $isVisible }) => ($isVisible ? "visible" : "hidden")};
-    transform: translateY(${({ $isVisible }) => ($isVisible ? "0" : "-10px")});
     transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+
+    &[data-dropdown-open="true"] {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    &[data-dropdown-open="false"] {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+    }
 `;
 
-const Item = styled("li", {
-	shouldForwardProp: (prop) => prop !== "$isHighlight",
-})<{ $isHighlight?: boolean }>`
+const Item = styled.li`
     padding: 12px 20px;
     font-family: sans-serif;
     font-size: 14px;
@@ -37,14 +43,12 @@ const Item = styled("li", {
     cursor: pointer;
     transition: background-color 0.2s;
 
-    ${({ $isHighlight }) =>
-			$isHighlight &&
-			`
-            border-bottom: 1px solid #e0e0e0;
-            margin-bottom: 4px;
-            padding-bottom: 16px;
-            font-weight: 600;
-        `}
+    &[data-highlight="true"] {
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 4px;
+        padding-bottom: 16px;
+        font-weight: 600;
+    }
 
     &:hover {
         background-color: #f5f5f5;
@@ -55,16 +59,20 @@ const Item = styled("li", {
     }
 `;
 
-/** Wraps the icon so transient props never reach react-icons' `<svg>`. */
-const ChevronWrapper = styled("span", {
-	shouldForwardProp: (prop) => prop !== "$isVisible",
-})<{ $isVisible?: boolean }>`
+/** Chevron rotation from data-dropdown-open; icon is not styled so nothing reaches svg. */
+const ChevronWrapper = styled.span`
     display: inline-flex;
-    transform: ${({ $isVisible }) =>
-			$isVisible ? "rotate(180deg)" : "rotate(0deg)"};
     transition: transform 0.2s ease;
     color: white;
     z-index: 1;
+
+    &[data-dropdown-open="true"] {
+        transform: rotate(180deg);
+    }
+
+    &[data-dropdown-open="false"] {
+        transform: rotate(0deg);
+    }
 `;
 
 const Container = styled.div`

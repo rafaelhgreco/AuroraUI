@@ -25,12 +25,14 @@ export default function Dropdown({
 		>
 			<Styled.Container onClick={controller.toggleOpen}>
 				{trigger}
-				<Styled.ChevronWrapper $isVisible={state.isVisible}>
+				<Styled.ChevronWrapper
+					data-dropdown-open={state.isVisible ? "true" : "false"}
+				>
 					<HiChevronDown />
 				</Styled.ChevronWrapper>
 			</Styled.Container>
 
-			<Styled.Menu $isVisible={state.isVisible}>
+			<Styled.Menu data-dropdown-open={state.isVisible ? "true" : "false"}>
 				{items.map((item, index) => {
 					const isFirst = index === 0;
 					const shouldHighlight = highlightFirst && isFirst;
@@ -38,7 +40,7 @@ export default function Dropdown({
 					return (
 						<Styled.Item
 							key={item.id}
-							$isHighlight={shouldHighlight}
+							data-highlight={shouldHighlight ? "true" : "false"}
 							onClick={() => {
 								item.onClick?.();
 								controller.close();
