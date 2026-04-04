@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { HiOutlineX, HiViewGrid } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import type { NavItem } from "../types/nav-item.types";
 import { Styled } from "./drawer-nav.styles";
@@ -21,17 +22,23 @@ export default function DrawerNav({ items }: DrawerNavProps) {
 		}
 	};
 
+	const openAttr = isOpen ? "true" : "false";
+
 	return (
 		<>
 			<Styled.MenuButton onClick={toggleDrawer}>
-				<Styled.DrawerIcon />
+				<Styled.DrawerIconWrapper>
+					<HiViewGrid />
+				</Styled.DrawerIconWrapper>
 			</Styled.MenuButton>
 
-			<Styled.Overlay isOpen={isOpen} onClick={closeDrawer} />
+			<Styled.Overlay data-drawer-open={openAttr} onClick={closeDrawer} />
 
-			<Styled.DrawerPanel isOpen={isOpen}>
+			<Styled.DrawerPanel data-drawer-open={openAttr}>
 				<Styled.CloseButton onClick={closeDrawer}>
-					<Styled.CloseIcon />
+					<Styled.CloseIconWrapper>
+						<HiOutlineX />
+					</Styled.CloseIconWrapper>
 				</Styled.CloseButton>
 
 				<Styled.NavList>
