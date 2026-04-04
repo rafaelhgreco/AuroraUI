@@ -1,8 +1,8 @@
 import type React from "react";
-import { HiChevronDown } from "react-icons/hi2";
 import { useDropdown } from "../hooks/use-dropdown";
 import type { DropdownItem } from "../types/dropdown-item.types";
 import { Styled } from "./dropdown.component.styles";
+import { IconChevronDown } from "./icons";
 
 export interface DropdownProps {
 	trigger: React.ReactNode;
@@ -29,7 +29,7 @@ export default function Dropdown({
 				<Styled.ChevronWrapper
 					data-dropdown-open={isDropdownOpen ? "true" : "false"}
 				>
-					<HiChevronDown />
+					<IconChevronDown />
 				</Styled.ChevronWrapper>
 			</Styled.Container>
 

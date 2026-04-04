@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { HiOutlineX, HiViewGrid } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import type { NavItem } from "../types/nav-item.types";
 import { Styled } from "./drawer-nav.styles";
+import { IconViewGrid, IconX } from "./icons";
 
 export interface DrawerNavProps {
 	items: NavItem[];
@@ -28,7 +28,7 @@ export default function DrawerNav({ items }: DrawerNavProps) {
 		<>
 			<Styled.MenuButton onClick={toggleDrawer}>
 				<Styled.DrawerIconWrapper>
-					<HiViewGrid />
+					<IconViewGrid />
 				</Styled.DrawerIconWrapper>
 			</Styled.MenuButton>
 
@@ -37,7 +37,7 @@ export default function DrawerNav({ items }: DrawerNavProps) {
 			<Styled.DrawerPanel data-drawer-open={openAttr}>
 				<Styled.CloseButton onClick={closeDrawer}>
 					<Styled.CloseIconWrapper>
-						<HiOutlineX />
+						<IconX />
 					</Styled.CloseIconWrapper>
 				</Styled.CloseButton>
 

@@ -31,7 +31,7 @@ const MenuButton = styled.button`
 	}
 `;
 
-/** Plain span so no custom props reach the react-icons <svg>. */
+/** Plain span wrapper — icon renders inside with no custom props on the svg. */
 const DrawerIconWrapper = styled.span`
 	display: inline-flex;
 	font-size: 24px;
@@ -147,7 +147,7 @@ const SectionTitle = styled.span`
 	display: block;
 `;
 
-/** Plain wrapper so no custom props reach the react-icons <svg>. */
+/** Plain wrapper — icon renders inside with no custom props on the svg. */
 const CloseIconWrapper = styled.span`
 	position: absolute;
 	top: 24px;
