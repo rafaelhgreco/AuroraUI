@@ -7,7 +7,7 @@ const Wrapper = styled.div`
     align-items: center;
 `;
 
-const Menu = styled.ul<{ isVisible: boolean }>`
+const Menu = styled.ul<{ $isVisible: boolean }>`
     position: absolute;
     top: 100%;
     left: 0;
@@ -20,9 +20,9 @@ const Menu = styled.ul<{ isVisible: boolean }>`
     list-style: none;
     z-index: 1000;
 
-    opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
-    visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
-    transform: translateY(${({ isVisible }) => (isVisible ? "0" : "-10px")});
+    opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+    visibility: ${({ $isVisible }) => ($isVisible ? "visible" : "hidden")};
+    transform: translateY(${({ $isVisible }) => ($isVisible ? "0" : "-10px")});
     transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
 `;
 
@@ -35,8 +35,8 @@ const Item = styled.li<{ isHighlight?: boolean }>`
     transition: background-color 0.2s;
 
     ${({ isHighlight }) =>
-        isHighlight &&
-        `
+			isHighlight &&
+			`
             border-bottom: 1px solid #e0e0e0;
             margin-bottom: 4px;
             padding-bottom: 16px;
@@ -52,9 +52,11 @@ const Item = styled.li<{ isHighlight?: boolean }>`
     }
 `;
 
-const Chevron = styled(HiChevronDown)<{ isVisible?: boolean }>`
-    transform: ${({ isVisible }) =>
-        isVisible ? "rotate(180deg)" : "rotate(0deg)"};
+const Chevron = styled(HiChevronDown, {
+	shouldForwardProp: (prop) => prop !== "$isVisible",
+})<{ $isVisible?: boolean }>`
+    transform: ${({ $isVisible }) =>
+			$isVisible ? "rotate(180deg)" : "rotate(0deg)"};
     transition: transform 0.2s ease;
     color: white;
     z-index: 1;
@@ -67,9 +69,9 @@ const Container = styled.div`
     gap: 4px;
 `;
 export const Styled = {
-    Wrapper,
-    Menu,
-    Item,
-    Chevron,
-    Container,
+	Wrapper,
+	Menu,
+	Item,
+	Chevron,
+	Container,
 };
