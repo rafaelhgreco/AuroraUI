@@ -16,6 +16,7 @@ export default function Dropdown({
 	highlightFirst = false,
 }: DropdownProps) {
 	const { state, controller } = useDropdown();
+	const isDropdownOpen = state.isOpen || state.isHovered;
 
 	return (
 		<Styled.Wrapper
@@ -26,13 +27,13 @@ export default function Dropdown({
 			<Styled.Container onClick={controller.toggleOpen}>
 				{trigger}
 				<Styled.ChevronWrapper
-					data-dropdown-open={state.isVisible ? "true" : "false"}
+					data-dropdown-open={isDropdownOpen ? "true" : "false"}
 				>
 					<HiChevronDown />
 				</Styled.ChevronWrapper>
 			</Styled.Container>
 
-			<Styled.Menu data-dropdown-open={state.isVisible ? "true" : "false"}>
+			<Styled.Menu data-dropdown-open={isDropdownOpen ? "true" : "false"}>
 				{items.map((item, index) => {
 					const isFirst = index === 0;
 					const shouldHighlight = highlightFirst && isFirst;
