@@ -1,7 +1,7 @@
 {
-	"name": "storybook-react",
+	"name": "aurora-ui",
 	"version": "1.0.0",
-	"description": "A modern React component library with flexible rendering via portals",
+	"description": "Biblioteca de componentes React documentada e padronizada com Storybook",
 	"license": "MIT",
 	"author": "Rafael Henrique Greco",
 	"repository": {

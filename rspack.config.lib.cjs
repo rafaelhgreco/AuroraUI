@@ -10,7 +10,7 @@ module.exports = {
 		path: path.resolve(__dirname, "dist"),
 		filename: "index.js",
 		library: {
-			name: "StoryBookReact",
+			name: "AuroraUI",
 			type: "umd",
 		},
 		globalObject: "this",
